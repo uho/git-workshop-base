@@ -47,56 +47,46 @@
 Eine der Stärken von Git ist, dass es die Zusammenarbeit von 
 EntwicklerInnen unterstützt: Sie können im großen Stil an Projekten arbeiten und geordnet Änderungen austauschen.
 
-Änderungen am Projekt werden dabei immer zunächst in einem lokalen Repository vorgenommen --- was wir 
-am Anfang üben wollen --- und erst dann, wenn die Änderungen erfolgreich sind, anderen in einem globalen Repository\footnote{Technisch weisen lokale und globale Repositories die gleiche Struktur auf. Es geht hier also um Konventionen der Verwendung und nicht um technische Eigenschaften der Repositories.} zur Verfügung gestellt. Das sehen wir uns im Anschluss an.
+Git ist ein verteiltes Versionssystem, d.\,h.\ es gibt typischerweise nicht nur
+ein lokales Repository bei Euch sondern weitere \emph{remote}-Repositories auf anderen Rechnern, mit denen Änderungen ausgetauscht werden können. Zwar wollen wir zunächst nur jeder in seinem lokalen Repository arbeiten, doch soll es für unsere späteren Experimente gleich mit einem remote-Repository verbunden sein.\footnote{Ein isoliertes lokales Repository kann man ganz in einem Verzeichnis eigener Wahl einfach mit \texttt{git init} erzeugen. Machen wir hier aber nicht.}
 
-Github ist das \emph{Social Network} für Entwickler. Es verwaltet öffentlich zugängliche (und private) Repositories, erlaubt ihre Verwaltung mit Git und bietet darüber hinaus zahlreiche Funktionen zur Projektverwaltung und Präsentation des Projekts im Netz.
+Github ist das \emph{Social Network} für Entwickler. Es verwaltet öffentlich zugängliche (und private) Repositories mit Git und bietet darüber hinaus zahlreiche Funktionen zur Projektverwaltung und Präsentation des Projekts im Netz.
 
 \texttt{git status} ist Euer Freund. Wann immer Ihr in Git verloren seid, könnt ihr damit sehen, wie Git die Lage beurteilt. Seht Euch die Ausgabe an und versucht zu verstehen, was Git Euch damit sagen will.
 
 
-\section{Jeder für sich: Arbeiten im lokalen Repository}
-\subsection*{Repositories anlegen}
 
-Unser hier zu entwickelndes Mini-Projekt soll ein Web-Server für 
- den Git-Workshop selbst sein. Dafür brauchen wir auch ein paar Web-Seiten in
- HTML.
-
-\begin{comment} 
-\begin{remark}
-Es ist eventuell sinnvoll, gleich auch lokal mit einem Clone zu arbeiten,
-damit man nicht auf das Konfigurieren der Remotes eingehen muss\ldots
-
-Wir brauchen ein gutes Beispiel für kooperatives Sammeln von Files.
-Ein kleines Programmierprojekt? In welcher Sprache?
-\end{remark}
-\end{comment}
+\subsection*{Repositories anlegen: Clonen}\vspace{-1.5ex}
+Die einfachste Art, eine Verbindung zwischen Repositories herzustellen, ist ein neues Repository als vollständige Kopie (inklusive der gesamten Historie) eines bestehenden Repositories anzufertigen. Das geschieht mit \texttt{git clone} \textsf{Repository-URL}.
+Der Einfachheit halber nehmen wir ein schon bestehendes Repository bei Github:
 
 \begin{enumerate*}
+\item Bitte kopiert Euch das Repository \texttt{git-workshop} unter \texttt{github.com/fh-wedel}:\\ \texttt{git clone https://github.com/fh-wedel/git-workshop.git}
 
-\item Legt bitte ein Arbeitsverzeichnis an, in dem Ihr Eure HTML-Files verwalten wollt.
-Dieses Verzeichnis macht Ihr mit \texttt{git init} zu einem Git-Repository. Seht Euch an, welche Files Git zur Verwaltung erzeugt (Ihr müsst sie nicht im Detail verstehen, aber wo sie stehen ist schon interessant.)
-
+Damit gibt es bei Euch nun ein lokales Repository im Verzeichnis \texttt{git-workshop}, das Ihr nun bearbeiten könnt. Seht Euch an, welche Files Git zur Verwaltung erzeugt (Ihr müsst sie nicht im Detail verstehen, aber wo sie stehen ist schon interessant.)
 \end{enumerate*}
 
+\section{Jeder für sich: Arbeiten im lokalen Repository}
 
+Unser hier zu entwickelndes Mini-Projekt soll ein Web-Server für 
+den Git-Workshop selbst sein. Dafür brauchen wir auch ein paar Web-Seiten in
+HTML. Die findet man in \texttt{src/html}.
 
-
-\subsection*{Im aktuellen Branch arbeiten}
+\subsection*{Im aktuellen Branch arbeiten}\vspace{-1.5ex}
 Ohne weitere Maßnahmen arbeitet Ihr auf dem \texttt{master}--Branch.
 Es ist in Git üblich, mit eigenen Branches zu arbeiten und nicht direkt auf
 \texttt{master}. Wir machen das jetzt trotzdem erstmal.
 
 \begin{enumerate*}
 
-\item Legt HTML-Files in Eurem Arbeitsverzeichnis an und bearbeitet sie so, wie Ihr wollt. Was sagt \texttt{git status}? Nehmt (einige) Files für Euren ersten Commit auf (das sog.\ \emph{stagen} mit \texttt{git add} \textsf{filename}, was sagt \texttt{git status}?) und macht den Commit (\texttt{git commit -m}\verb|"|\textsf{Commit-Meldung}\verb|"|).  Was sagt \texttt{git status}? 
+\item Legt bitte ein Unterverzeichnis mit Eurem Namen in \texttt{src/html} an, erstellt dort bitte ein paar HTML-Files und bearbeitet sie so, wie Ihr wollt. Was sagt \texttt{git status}? Nehmt (einige) Files für Euren ersten Commit auf (das sog.\ \emph{stagen} mit \texttt{git add} \textsf{filename}, was sagt \texttt{git status}?) und macht den Commit (\texttt{git commit -m}\verb|"|\textsf{Commit-Meldung}\verb|"|).  Was sagt \texttt{git status}? 
 \end{enumerate*}
 Weitere nützliche Kommandos, um zu sehen, wie Eure Änderungen aussehen sind \texttt{git diff} (zeigt den Unterschied zwischen lokalen Änderungen und gestageten Files)
 und \texttt{git show} (zeigt die Änderungen des letzen Commits).
 
 
-\subsection*{Branchen}
-Git macht es leicht, für einzelne Aufgaben Branches anzulegen, in denen die Arbeiten für diese Aufgabe zusammengefasst werden. Es ist üblicher Git-Stil, dass man für jede Teilaufgabe einen Branch anlegt, darin die notwendigen Änderungen macht und den Branch dann zurück in den Haupt-Branch merged. So kann man die Änderungen für einzelne Features voneinander trennen und auch gezielt und ausgewählt zur Verfügung stellen.
+\subsection*{Branchen}\vspace{-1.5ex}
+Git macht es leicht, für einzelne Aufgaben Branches anzulegen, in denen die Arbeiten für diese Aufgabe zusammengefasst werden. Es ist üblicher Git-Stil, dass man für jede Teilaufgabe einen Branch anlegt, darin die notwendigen Änderungen macht und den Branch dann zurück in den Haupt-Branch merget. So kann man die Änderungen für einzelne Features voneinander trennen und auch gezielt und ausgewählt zur Verfügung stellen.
 \begin{enumerate*}
 \item Macht wieder einige Änderungen in Euren lokalen Files (noch kein Stagen oder Committen). Vielleicht fügt Ihr \texttt{style}-Angaben hinzu oder erzeugt sogar ein eigenes Stylesheet.
 
@@ -113,17 +103,17 @@ Vielleicht stellt Ihr fest, dass die Arbeiten auf dem Branch in eine Sackgasse g
 
 Aber meist, wollt Ihr die Änderungen im Branch weiterverwenden. Sie werden dafür ge\emph{merge}\/t. 
 
-\subsection*{Mergen}
-Dass Mergen erfolgt bei Git immer in einen Branch hinein, d.\,h.\ man wechselt also erst in den Branch in den man mergen will und löst dann das Mergen aus.
+\subsection*{Mergen}\vspace{-1.5ex}
+Das Mergen erfolgt bei Git immer in einen Branch hinein, d.\,h.\ man wechselt also erst in den Branch in den man mergen will und löst dann das Mergen aus.
 
 \begin{enumerate*}
 
-\item Übernehmt Eure Änderungen von Eurem Branch auf den \texttt{master}-Branch (\texttt{git checkout master; git merge --no-ff} \textsf{Branch-Name}\footnote{\texttt{--no-ff} bedeutet, dass bestimmt kein sog.\ \emph{Fast-Forward-Merge} gemacht wird, bei dem nicht wirklich gemerget wird, sondern nur Referenzen verschoben}).
+\item Übernehmt Eure Änderungen von Eurem Branch auf den \texttt{master}-Branch (\texttt{git checkout master; git merge --no-ff} \textsf{Branch-Name}\footnote{\texttt{--no-ff} bedeutet, dass bestimmt kein sog.\ \emph{Fast-Forward-Merge} gemacht wird, bei dem nicht wirklich gemerget wird, sondern nur Referenzen verschoben werden.}).
 
 Wenn es keine konkurrierenden Änderungen auf dem \texttt{master}--Branch gibt,
 dann sollte das Mergen ohne Probleme erfolgen und auch gleich commited werden.
 
-Gibt es konkurrierende Änderungen, entstehen möglicherweise Konflikte. Git committed den Merge nicht, Ihr müsst die Konflikte sinnvollerweise behebe, und
+Gibt es konkurrierende Änderungen, entstehen möglicherweise Konflikte. Git committed den Merge nicht, Ihr müsst die Konflikte sinnvollerweise beheben und
 dann selbst (stagen und) committen.
 
 \end{enumerate*}
@@ -131,25 +121,20 @@ dann selbst (stagen und) committen.
 \newpage
 \section{Alle miteinander: Arbeiten mit entferntem Repository}
 Git-Repositories können (und sind oft) mit anderen Repositories (sog.\ \emph{remotes}) verbunden. Zwischen diesen Repositories können Commits ausgetauscht
-werden.
+werden. 
 
-\subsection*{Clonen}
+Wir hatten unser Repository ja durch \texttt{git clone} erzeugt und dabei wird gleich eine Verbindung zum Ursprungs-Repository unter dem Namen \texttt{origin} hergestellt. Das kann man mit \texttt{git remote -v} sehen.
 
-Die einfachste Art, eine Verbindung zwischen Repositories herzustellen, ist ein neues Repository als vollständige Kopie (inklusive der gesamten Historie) eines bestehenden Repositories anzufertigen. Das geschieht mit \texttt{git clone} \textsf{Repository-URL}.
-Der Einfachheit halber nehmen wir ein schon bestehendes Repository bei Github.
 
-\begin{enumerate*}
-\item Bitte kopiert Euch das Repository \texttt{git-workshop} unter \texttt{github.com/fh-wedel}: \texttt{git clone https://github.com/fh-wedel/git-workshop.git}\ .
-
-Damit gibt es bei Euch nun ein lokales Repository im Verzeichnis \texttt{git-workshop}, dass Ihr wie bisher bearbeiten könnt.
-\end{enumerate*}
-
-\subsection*{Pull und Push}
+\subsection*{Pull und Push}\vspace{-1.5ex}
 Mit \texttt{git pull} werden Commits aus einem Remote-Repository in das lokale
 Repository übernommen. Mit \texttt{git push} werden Commits aus dem lokalen Repository in ein Remote-Repository übertragen.
 
 \begin{enumerate*}
 \item Macht bitte wie zuvor Änderungen in Eurem lokalen Repository (Eigener Branch, Änderungen, commit, Änderungen, commit, mergen) und pusht dann Eure Änderungen in das Github-\texttt{git-workshop}-Repository. Werden Eure lokalen Branches und die Commits darauf auch mitübertragen?
+
+\item Bitte passt das File \texttt{src/html/index.html} an und tragt Euch in die Teilnehmerliste (gerne mit Pseudonym) ein. Stellt auch diese Eure Änderung bereit.
+
 \end{enumerate*}
 
 
