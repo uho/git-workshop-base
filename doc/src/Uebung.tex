@@ -149,7 +149,9 @@ Git Quick reference\\
 
 \begin{description}
   \item[bisect] \hfill \\
-  Suche nach fehlerhaftem commit
+  Suche nach einem fehlerhaftem in einer Reihe von Commits. Mittels \texttt{git bisect start} wird bisect gestartet, mittels \texttt{git bisect bad} und \texttt{git bisect good} werden defekte und heile Fassungen markiert. Bisect teilt die Commits innerhalb der Markierungen auf und checkt eine Revision in der Mitte aus, die getestet und dann entsprechend markiert werden muß. Zum Schluß bleibt die defekte Revision übrig.
+    
+  Die Hilfe (\texttt{git help bisect}) bietet detaillierte Beschreibungen zu einer Reihe weiterer Befehle, z.B. zum Zurücksetzen des Zustandes, Betrachten der Historie, Überspringen von Commits etc.
   \item[bundle] \hfill \\
   Git-Archiv erstellen
   \item[cherry-pick] \hfill \\
