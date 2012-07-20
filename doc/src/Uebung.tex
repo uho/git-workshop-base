@@ -153,7 +153,11 @@ Git Quick reference\\
     
   Die Hilfe (\texttt{git help bisect}) bietet detaillierte Beschreibungen zu einer Reihe weiterer Befehle, z.B. zum Zurücksetzen des Zustandes, Betrachten der Historie, Überspringen von Commits etc.
   \item[bundle] \hfill \\
-  Git-Archiv erstellen
+  Archiv-Datei aus einem Git-Repository erstellen. Komprimierte Bundle-Dateien stellen die kleinste Repräsentation eines Repositories dar. Daher eignen sie sich hervorragend für den Versand per E-Mail oder Transport auf einem USB-Stick. 
+  
+  Mit \texttt{git bundle create repo.bundle master} werden alle zum Branch \texttt{master} gehörenden commits in die Datei \texttt{repo.bundle} geschrieben. Es ist auch möglich, kleinere bundles zu erzeugen, z.B. mit \texttt{--since=10.days master} oder \texttt{v2.0..master}.
+  
+  Mit \texttt{clone}, \texttt{fetch} und \texttt{pull} werden die Dateien eingelesen, z.B. \texttt{git clone repo.bundle newrepo}. Weitere Befehle wie \texttt{verify} und \texttt{unbundle} werden in der Hilfe beschrieben.
   \item[cherry-pick] \hfill \\
   einige Änderungen übernehmen
   
