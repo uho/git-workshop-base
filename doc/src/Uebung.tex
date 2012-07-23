@@ -172,11 +172,15 @@ Git Quick reference\\
   Mit \texttt{git bundle create repo.bundle master} werden alle zum Branch \texttt{master} gehörenden commits in die Datei \texttt{repo.bundle} geschrieben. Es ist auch möglich, kleinere bundles zu erzeugen, z.B. mit \texttt{--since=10.days master} oder \texttt{v2.0..master}.
   
   Mit \texttt{clone}, \texttt{fetch} und \texttt{pull} werden die Dateien eingelesen, z.B. \texttt{git clone repo.bundle newrepo}. Weitere Befehle wie \texttt{verify} und \texttt{unbundle} werden in der Hilfe beschrieben.
+
   \item[cherry-pick] \hfill \\
   einige Änderungen übernehmen
   
   \item[grep] \hfill \\
-  in Dateien und Archiv suchen
+  Dateien und Daten im Repository durchsuchen. \texttt{git grep} \verb|"|\texttt{ElasticSearchNullPointerException}\verb|"| durchsucht lokale Dateien, \texttt{git grep --cached} \verb|"|\texttt{ElasticSearchNullPointerException}\verb|"| durchsucht die im Index registrierten Blogs und \texttt{git grep }\verb|"|\texttt{ElasticSearchNullPointerException}\verb|"|\texttt{ 575250}\verb|~|\texttt{50} durchsucht das 50. Commit vor dem Commit \texttt{575250e223c31218b13e927e914925299594973d}.
+  
+  % \texttt{git log --grep }\verb|"|\verb|[|\texttt{Ee}\verb|]|\texttt{+xception}\verb|"|\texttt{ -E} durchsucht alle Commit-Meldungen nach den Wörtern Exception oder exception.
+  
   \item[stash] \hfill \\
   Änderungen temporär speichern
   \item[svn] \hfill \\
