@@ -139,6 +139,20 @@ Repository übernommen. Mit \texttt{git push} werden Commits aus dem lokalen Rep
 
 
 \vfill
+
+\section*{Git Revisions}
+
+Wie adressiere ich eine Revision?
+
+\begin{itemize}
+\item Mit dem SHA-Wert, der im Log anzeigt wird. Dieser kann von hinten abgeschnitten werden, so lange der Bezeichner im Repository eindeutig ist.
+\item Mit der Ausgabe von \texttt{git describe}.
+\item Mit einer symbolischen Referenz, die in im Repository definiert ist, z.B. \texttt{master}, \texttt{HEAD}, \texttt{FETCH\_HEAD}, \texttt{ORIG\_HEAD}
+\item Mit einer Kombination aus Referenz und Datum: \texttt{master@\{yesterday\}}, \texttt{HEAD@\{5 minutes ago\}}. Diese Adressen liefern den Zustand zu dem spezifizierten Zeitpunkt, um Änderungen innerhalb eines Zeitraumes anzuzeigen eignen sich \texttt{--since} und \texttt{--until}.
+\item Vorläufer einer Referenz: \texttt{HEAD~10}
+\end{itemize}
+
+\vfill
 \section*{Nützliche Links}
 
 Git Quick reference\\
