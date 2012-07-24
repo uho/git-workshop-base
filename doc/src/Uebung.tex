@@ -150,6 +150,9 @@ Wie adressiere ich eine Revision?
 \item Mit einer symbolischen Referenz, die in im Repository definiert ist, z.B. \texttt{master}, \texttt{HEAD}, \texttt{FETCH\_HEAD}, \texttt{ORIG\_HEAD}
 \item Mit einer Kombination aus Referenz und Datum: \texttt{master@\{yesterday\}}, \texttt{HEAD@\{5 minutes ago\}}. Diese Adressen liefern den Zustand zu dem spezifizierten Zeitpunkt, um Änderungen innerhalb eines Zeitraumes anzuzeigen eignen sich \texttt{--since} und \texttt{--until}.
 \item Vorläufer einer Referenz: \texttt{HEAD~10}
+\item Eine Reihe von Commits wird genau wie ein einzelnes Commit adressiert. Befehle, die eine Reihe erwarten gehen dann Kette der Vorfahren durch, um die vollständige Liste zu erzeugen, z.B. zeigt \texttt{git log 73a34} keine Commits nach 73a34 an.
+\item Um Commits aus einer Reihe auszuschließen, wird die Notation \verb|^| verwendet, \verb|^|r1 r2 meint alle Commits, die von r2, nicht aber von r1 aus erreichbar sind. Beispielsweise zeigt \texttt{git log }\verb|^|\texttt{73a34 HEAD} die Commits von dem Nachfolger von \texttt{73a34} bis \texttt{HEAD} an.
+\item r1..r2 bezeichnet alle Commits, die von r2, nicht aber von r1 zu erreichen sind. Die ähnliche Notation r1...r2 bezeichnet alle Commits, die entweder von r1 oder von r2, aber nicht von beiden aus zu erreichen sind.
 \end{itemize}
 
 \vfill
