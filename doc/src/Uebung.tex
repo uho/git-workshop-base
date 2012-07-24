@@ -174,7 +174,9 @@ Git Quick reference\\
   Mit \texttt{clone}, \texttt{fetch} und \texttt{pull} werden die Dateien eingelesen, z.B. \texttt{git clone repo.bundle newrepo}. Weitere Befehle wie \texttt{verify} und \texttt{unbundle} werden in der Hilfe beschrieben.
 
   \item[cherry-pick] \hfill \\
-  einige Änderungen übernehmen
+  Einzelne Comics übernehmen. Anstelle eines vollständigen merge ist es mit cherry-pick möglich, einzelne Commits aus einem Branch zu übernehmen. Dies funktioniert in der Regel auch dann, wenn sich die beteiligten Branches sehr weit voneinander weg entwickelt haben und beispielsweise das Ziel des ursprünglichen Commits inzwischen in einer anderen Datei liegt.
+  
+  Beispiel: \texttt{git cherry-pick master} übernimmt die Änderungen des tip vom Branch master und erzeugt einen neuen Commit. \texttt{git cherry-pick maint master..next} übernimmt alle Commits, die Vorgänger von maint oder next, nicht aber von master sind.
   
   \item[grep] \hfill \\
   Dateien und Daten im Repository durchsuchen. \texttt{git grep} \verb|"|\texttt{ElasticSearchNullPointerException}\verb|"| durchsucht lokale Dateien, \texttt{git grep --cached} \verb|"|\texttt{ElasticSearchNullPointerException}\verb|"| durchsucht die im Index registrierten Blogs und \texttt{git grep }\verb|"|\texttt{ElasticSearchNullPointerException}\verb|"|\texttt{ 575250}\verb|~|\texttt{50} durchsucht das 50. Commit vor dem Commit \texttt{575250e223c31218b13e927e914925299594973d}.
@@ -188,10 +190,13 @@ Git Quick reference\\
 
   \item[submodule] \hfill \\
 	Repositories schachteln
+	
   \item[notes] \hfill \\
   Kommentare an commit hängen
+  
   \item[archive] \hfill \\
   extrahieren der Nutzdaten
+  
   \item[reflog] \hfill \\
   Reflog-Informationen verwalten
 
