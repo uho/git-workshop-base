@@ -187,22 +187,28 @@ Git Quick reference\\
   % \texttt{git log --grep }\verb|"|\verb|[|\texttt{Ee}\verb|]|\texttt{+xception}\verb|"|\texttt{ -E} durchsucht alle Commit-Meldungen nach den Wörtern Exception oder exception.
   
   \item[stash] \hfill \\
-  Änderungen temporär speichern
+  Änderungen temporär speichern, um ein sauberes Arbeistverzeichnis zu erhalten, ohne Arbeit zu verlieren. \texttt{git stash save} speichert den aktuellen Stand, \texttt{git stash list} zeigt eine Liste aller gespeicherten Zwischenstände an und \texttt{git stash pop} übernimmt die gespeicherten Änderungen ins Arbeitsverzeichnis, ohne die Änderungen zum Index hinzuzufügen oder zu comitten.
+  
   \item[svn] \hfill \\
-  Interface zu Subversion
+  Ein bidirektionaler Subversion<=>Git Adapter. Ein Subversion-Repository wird per \texttt{git svn clone https:/...} geklont (das lokale Git-Repostory enthält danach sämtliche Commits aus Subversion); das daraus entstandene Repository kann wie jedes andere Git-Repository verwendet werden. Commits können per \texttt{git svn dcommit} in das Subversion-Repository zurück übertragen und Änderungen aus dem Subversion-Repository per \texttt{git svn rebase} geladen werden.
+  
+  Bei der Interaktion mit Branches ist Vorsicht geboten, aufgrund des Umfanges des sehr mächtigen Subversion-Adapters wird empfohlen vor Verwendung die Hilfseite (\texttt{git help svn}) zu lesen.
 
   \item[submodule] \hfill \\
-	Repositories schachteln
+  Repositories schachteln: Mittels \texttt{git submodule add git://... lib/extern1} wird ein Git-Repostory unterhalb des Verzeichnisses \texttt{lib/extern1} eingebunden, mit \texttt{git submodule init} initialisiert und mit \texttt{git submodule update} ausgecheckt.
+  
+  Das Commit des Submodules wird im übergeordneten Repository gespeichert, so daß ein erneutes \texttt{git submodule update} immer die gleiche Version auscheckt. Um das Submodul zu aktualisieren, muß zuerst das Submodul aktualisiert werden, z.B. mit \texttt{cd lib/extern1; git pull origin master} und dann mittels \texttt{cd ..; git add extern1; git commit...} im übergeordneten Repository gespeichert werden.
 	
   \item[notes] \hfill \\
-  Kommentare an commit hängen
+  Wenn ein Commit nicht hinreichend Kommentiert ist, aber auch nicht mehr geändert werden soll, so kann mittels \texttt{git note add -m }\verb|"|\texttt{...}\verb|"|\texttt{ <rev>} eine Notiz hinzugefügt werden.
   
   \item[archive] \hfill \\
-  extrahieren der Nutzdaten
+  Mit \texttt{git archive --prefix=xyz-1.4.0/ -o xyz-1.4.0.tar.gz v1.4.0} wird ein Archiv der Daten ohne Git-Metainformationen erstellt (entspricht \texttt{svn export}).
   
   \item[reflog] \hfill \\
-  Reflog-Informationen verwalten
+  \texttt{git reflog} zeigt die letzten Aktionen auf dem Repository an, in der Voreinstellung werden die letzten 90 Tage gespeichert. Mit diesen Informationen ist es in vielen Fällen möglich, verloren gegangene Commits (z.B. durch ein voreiliges \texttt{git reset --hard HEAD}\verb|^|) wiederherzustellen.
 
+  Um Platz zu sparen können reflog-Einträge gelöscht werden, z.B. so: \texttt{git reflog expire --expire=1.minute refs/heads/master; git fsck --unreachable; git prune; git gc}.
   
   
   
