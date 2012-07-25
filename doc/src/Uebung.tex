@@ -136,8 +136,27 @@ Repository übernommen. Mit \texttt{git push} werden Commits aus dem lokalen Rep
 \item Bitte passt das File \texttt{src/html/index.html} an und tragt Euch in die Teilnehmerliste (gerne mit Pseudonym) ein. Stellt auch diese Eure Änderung bereit.
 
 \end{enumerate*}
+\newpage
+
+\section{Github: Fork und Pull Request}
+
+Bisher habt Ihr mit einem Repository gearbeitet, für das Ihr Schreibzugriff hattet. Github ermöglich es aber auch, Änderungen an einem schreibgeschützten Repository an den Autor zu senden.
+
+\subsection*{Fork}\vspace{-1.5ex}
+Auf der Github-Seite des Repositories drückt Ihr rechts oben den Knopf \texttt{Fork}. Damit erstellt Ihr eure eigene Kopie des Repositories, auf die Ihr auch schreibend zugreifen könnt.
+
+Diese Kopie klont Ihr bitte auf Euren lokalen Rechner, nehmt einige Änderungen vor, und pushed sie auf Github. Dabei ist zu beachten, daß \texttt{fetch}, \texttt{pull} und \texttt{push} sich auf Euren Klon beziehen. Es ist aber auch möglich, auf das ursprüngliche Repository zuzugreifen, indem mit \texttt{git remote add upstream https://github.com/otheruser/repo.git} ein zusätzliches remote hinzugefügt wird. Damit könnt Ihr während Eurer Arbeit Änderungen des Upstream integrieren (z.B. um sicherzustellen, daß Eure Änderungen zu der jeweils aktuellen Version passen).
 
 
+\subsection*{Pull Request}\vspace{-1.5ex}
+
+Um dem Besitzer des ursprünglichen Repositories die Änderungen zukommen zu lassen, erstellt Ihr einen \texttt{Pull Request}, den Knopf findet Ihr ebenfalls rechts oben.
+
+Der Pull Request enthält alle Änderungen Eures geforkten Repositories; auch die, die Ihr nach dem Anlegen des Pull Request hinzufügt. Dadurch könnt Ihr nachträglich Änderungen zum Pull Request hinzufügen und so z.B. auf Änderungsanforderungen reagieren oder später entdeckte Fehler korrigieren.
+
+Änderungen und Fehler werden bei Github direkt im Pull Request bzw. im Commit diskutiert. Neben den klassischen Kommentaren lassen sich mit dem blauen Plus, daß neben der jeweils aktiven Zeile erscheint, Diffs inline kommentieren. Probiert das am besten einfach mal untereinander aus. Kommentierte Commits erhalten ein zusätzliches Icon in der Liste aller Commits, lassen sich also leicht wiederfinden, Pull Requests bieten eine Liste aller Kommentare.
+
+\newpage
 \vfill
 \section*{Nützliche Links}
 
